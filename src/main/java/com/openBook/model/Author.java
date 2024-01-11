@@ -7,7 +7,6 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
 import java.util.Objects;
 
 @Entity
@@ -19,9 +18,10 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String firstName;
+    private String middleName;
     private String lastName;
     private String nationality;
-    private Date dob;
+    private int yearOfBirth;
 
     public long getId() {
         return id;
@@ -31,6 +31,8 @@ public class Author {
         return firstName;
     }
 
+    public String getMiddleName() { return middleName; }
+
     public String getLastName() {
         return lastName;
     }
@@ -39,8 +41,8 @@ public class Author {
         return nationality;
     }
 
-    public Date getDob() {
-        return dob;
+    public int getYearOfBirth() {
+        return yearOfBirth;
     }
 
     @Override
@@ -48,22 +50,25 @@ public class Author {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Author author = (Author) o;
-        return id == author.id && Objects.equals(firstName, author.firstName) && Objects.equals(lastName, author.lastName) && Objects.equals(nationality, author.nationality) && Objects.equals(dob, author.dob);
+        return id == author.id && Objects.equals(firstName, author.firstName)
+                && Objects.equals(middleName, author.middleName) && Objects.equals(lastName, author.lastName)
+                && Objects.equals(nationality, author.nationality) && Objects.equals(yearOfBirth, author.yearOfBirth);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, nationality, dob);
+        return Objects.hash(id, firstName, middleName, lastName, nationality, yearOfBirth);
     }
 
     @Override
     public String toString() {
-        return "Author{" +
+        return "Author(" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
+                ", middleName='" + middleName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", nationality='" + nationality + '\'' +
-                ", dob=" + dob +
-                '}';
+                ", yearOfBirth=" + yearOfBirth +
+                ')';
     }
 }
