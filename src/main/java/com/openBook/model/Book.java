@@ -1,14 +1,11 @@
 package com.openBook.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 @Entity
 @Data
@@ -17,18 +14,19 @@ import lombok.NonNull;
 public class Book {
 
     @Id
+    @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
-    @NonNull
+    @NotNull
     private String bookName;
-    @NonNull
+    @NotNull
+    @ManyToOne
+    @JoinColumn(name = "author_id")
     private Author author;
-    @NonNull
-    private String publisher;
 
+    private String publisher;
     private int yearOfPublish;
-    @NonNull
+    @NotNull
     private String genre;
 
 }

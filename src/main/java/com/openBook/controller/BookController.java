@@ -28,4 +28,9 @@ public class BookController {
     public Optional<Book> getBookById(@PathVariable Long id) {
         return bookService.getBookById(id);
     }
+
+    @PostMapping("/add")
+    public void addBook(@RequestBody Book book) {
+        bookService.addBook(book);
+    }
 }

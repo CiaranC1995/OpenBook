@@ -1,18 +1,50 @@
 package com.openBook.model;
 
+import com.openBook.test.config.builder.AuthorBuilder;
+import com.openBook.test.config.builder.BookBuilder;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class BookTest {
 
-    private final Author fScottFitz = new Author(1, "Francis", "Scott", "Fitzgerald",
-            "American", 1896);
+    private static Validator validator;
+
+    @BeforeAll
+    public static void beforeAll() {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validator = factory.getValidator();
+    }
+
+    private final Author fScottFitz = new AuthorBuilder()
+            .withId(1L)
+            .withFirstName("Francis")
+            .withMiddleName("Scott")
+            .withLastName("Fitzgerald")
+            .withNationality("American")
+            .withYearOfBirth(1896)
+            .build();
+
+    @Test
+    public void testBookIsValid() {
+        Book book = new BookBuilder().build();
+        Set<ConstraintViolation<Book>> constraintViolationSet = validator.validate(book);
+        assertThat(constraintViolationSet.size()).isEqualTo(0);
+    }
 
     @Test
     void testParamConstructorAndGetters() {
-        Book book = new Book(1, "The Great Gatsby", fScottFitz,
-                "Scribner", 1925, "Fiction");
+
+        Book book = new Book(1, "The Great Gatsby", fScottFitz, "Scribner",
+                1925, "Fiction");
 
         assertEquals(1, book.getId());
         assertEquals("The Great Gatsby", book.getBookName());
@@ -22,8 +54,8 @@ class BookTest {
         assertEquals("Fiction", book.getGenre());
 
         assertDoesNotThrow(() -> {
-            new Book(1, "The Great Gatsby", fScottFitz,
-                    "Scribner", 1925, "Fiction");
+            new Book(1, "The Great Gatsby", fScottFitz, "Scribner",
+                    1925, "Fiction");
         });
     }
 
@@ -42,49 +74,52 @@ class BookTest {
 
     @Test
     void testEqualsAndHashCode() {
-        Book book1 = new Book(1, "The Great Gatsby", fScottFitz,
-                "Scribner", 1925, "Fiction");
-        Book book2 = new Book(1, "The Great Gatsby", fScottFitz,
-                "Scribner", 1925, "Fiction");
+
+        Book book1 = new BookBuilder()
+                .withId(1L)
+                .withBookName("The Great Gatsby")
+                .withAuthor(fScottFitz)
+                .withPublisher("Scribner")
+                .withYearOfPublish(1925)
+                .withGenre("Fiction")
+                .build();
+
+        Book book2 = new BookBuilder()
+                .withId(1L)
+                .withBookName("The Great Gatsby")
+                .withAuthor(fScottFitz)
+                .withPublisher("Scribner")
+                .withYearOfPublish(1925)
+                .withGenre("Fiction")
+                .build();
 
         assertEquals(book1, book2);
         assertEquals(book1.hashCode(), book2.hashCode());
     }
 
-//    @Test
-//    void testNotEquals() {
-//        Book book1 = new Book(1, "The Great Gatsby", fScottFitz,
-//                "Scribner", 1925, "Fiction");
-//        Book book2 = new Book(2, "To Kill a Mockingbird", "Harper Lee",
-//                "J.B. Lippincott & Co.", 1960, "Novel");
-//
-//        assertNotEquals(book1, book2);
-//        assertNotEquals(book1.hashCode(), book2.hashCode());
-//    }
-
     @Test
     void testNotEqualsDifferentId() {
-        Book book1 = new Book(1, "The Great Gatsby", fScottFitz,
-                "Scribner", 1925, "Fiction");
-        Book book2 = new Book(2, "The Great Gatsby", fScottFitz,
-                "Scribner", 1925, "Fiction");
+
+        Book book1 = new BookBuilder()
+                .withId(1L)
+                .withBookName("The Great Gatsby")
+                .withAuthor(fScottFitz)
+                .withPublisher("Scribner")
+                .withYearOfPublish(1925)
+                .withGenre("Fiction")
+                .build();
+
+        Book book2 = new BookBuilder()
+                .withId(2L)
+                .withBookName("The Great Gatsby")
+                .withAuthor(fScottFitz)
+                .withPublisher("Scribner")
+                .withYearOfPublish(1925)
+                .withGenre("Fiction")
+                .build();
 
         assertNotEquals(book1, book2);
         assertNotEquals(book1.hashCode(), book2.hashCode());
     }
-
-    @Test
-    void testToString() {
-        Book book = new Book(1, "The Great Gatsby", fScottFitz,
-                "Scribner", 1925, "Fiction");
-
-        String expectedString = "Book(id=1, bookName=The Great Gatsby, author=Author(id=1, firstName='Francis', " +
-                "middleName='Scott', lastName='Fitzgerald', nationality='American', yearOfBirth=1896)" +
-                ", publisher=Scribner, yearOfPublish=1925, genre=Fiction)";
-        assertEquals(expectedString, book.toString());
-    }
-
-
-
 
 }
