@@ -31,7 +31,7 @@ class AuthorTest {
     }
 
     @Test
-    void testParamConstructorAndGetters() {
+    public void testParamConstructorAndGetters() {
 
         Author author = new Author(1, "Francis", "Scott",
                 "Fitzgerald", "American", 1896);
@@ -50,7 +50,7 @@ class AuthorTest {
     }
 
     @Test
-    void testDefaultConstructor() {
+    public void testDefaultConstructor() {
         Author author = new Author();
 
         assertNotNull(author);
@@ -64,7 +64,7 @@ class AuthorTest {
     }
 
     @Test
-    void testEqualsAndHashCode() {
+    public void testEqualsAndHashCode() {
 
         Author author1 = new AuthorBuilder()
                 .withId(1L)
@@ -88,7 +88,7 @@ class AuthorTest {
     }
 
     @Test
-    void testNotEqualsDifferentId() {
+    public void testNotEqualsDifferentId() {
         Author author1 = new AuthorBuilder()
                 .withId(1L)
                 .withFirstName("George")

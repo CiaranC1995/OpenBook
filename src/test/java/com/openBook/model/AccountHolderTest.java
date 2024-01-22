@@ -32,7 +32,7 @@ class AccountHolderTest {
     }
 
     @Test
-    void testParamConstructorAndGetters() {
+    public void testParamConstructorAndGetters() {
         AccountHolder accountHolder = new AccountHolder(1, "Ciarán", "Casey",
                 "ciarancasey@email.com", "password123!");
 
@@ -49,7 +49,7 @@ class AccountHolderTest {
     }
 
     @Test
-    void testDefaultConstructor() {
+    public void testDefaultConstructor() {
         AccountHolder accountHolder = new AccountHolder();
 
         assertNotNull(accountHolder);
@@ -61,7 +61,7 @@ class AccountHolderTest {
     }
 
     @Test
-    void testSetters() {
+    public void testSetters() {
         AccountHolder accountHolder = new AccountHolder();
         accountHolder.setId(1);
         accountHolder.setFirstName("Ciarán");
@@ -77,7 +77,7 @@ class AccountHolderTest {
     }
 
     @Test
-    void testEqualsAndHashCode() {
+    public void testEqualsAndHashCode() {
         AccountHolder accountHolder1 = new AccountHolder(1, "Ciarán", "Casey",
                 "ciarancasey@email.com", "password123!");
         AccountHolder accountHolder2 = new AccountHolder(1, "Ciarán", "Casey",
@@ -88,7 +88,7 @@ class AccountHolderTest {
     }
 
     @Test
-    void testNotEquals() {
+    public void testNotEquals() {
         AccountHolder accountHolder1 = new AccountHolder(1, "Ciarán", "Casey",
                 "ciarancasey@email.com", "password123!");
         AccountHolder accountHolder2 = new AccountHolder(2, "Sarah", "Shine",
@@ -100,7 +100,7 @@ class AccountHolderTest {
     }
 
     @Test
-    void testNotEqualsDifferentId() {
+    public void testNotEqualsDifferentId() {
         AccountHolder accountHolder1 = new AccountHolder(1, "Ciarán", "Casey",
                 "ciarancasey@email.com", "password123!");
         AccountHolder accountHolder2 = new AccountHolder(2, "Ciarán", "Casey",

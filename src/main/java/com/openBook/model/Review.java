@@ -8,8 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
-
 @Entity
 @Data
 @NoArgsConstructor
@@ -21,7 +19,6 @@ public class Review {
     private long id;
     private String title;
     private String reviewBody;
-    private Date reviewDate;
     private int rating;
-    private int userId;
+    private long userId;
 }

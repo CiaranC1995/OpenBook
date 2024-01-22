@@ -41,7 +41,7 @@ class BookTest {
     }
 
     @Test
-    void testParamConstructorAndGetters() {
+    public void testParamConstructorAndGetters() {
 
         Book book = new Book(1, "The Great Gatsby", fScottFitz, "Scribner",
                 1925, "Fiction");
@@ -60,7 +60,7 @@ class BookTest {
     }
 
     @Test
-    void testDefaultConstructor() {
+    public void testDefaultConstructor() {
         Book book = new Book();
 
         assertNotNull(book);
@@ -73,7 +73,7 @@ class BookTest {
     }
 
     @Test
-    void testEqualsAndHashCode() {
+    public void testEqualsAndHashCode() {
 
         Book book1 = new BookBuilder()
                 .withId(1L)
@@ -98,7 +98,7 @@ class BookTest {
     }
 
     @Test
-    void testNotEqualsDifferentId() {
+    public void testNotEqualsDifferentId() {
 
         Book book1 = new BookBuilder()
                 .withId(1L)
