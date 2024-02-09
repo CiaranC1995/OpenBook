@@ -18,12 +18,11 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @NotNull
-    private String bookName;
+    private String bookTitle;
     @NotNull
     @ManyToOne
     @JoinColumn(name = "author_id")
     private Author author;
-
     private String publisher;
     private int yearOfPublish;
     @NotNull

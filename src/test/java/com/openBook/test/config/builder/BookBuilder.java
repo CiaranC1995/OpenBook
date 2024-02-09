@@ -9,7 +9,7 @@ import java.util.Random;
 public class BookBuilder {
 
     private Long id;
-    private String bookName;
+    private String bookTitle;
     private Author author;
     private String publisher;
     private Integer yearOfPublish;
@@ -17,7 +17,7 @@ public class BookBuilder {
 
     public BookBuilder() {
         id = new Random().nextLong();
-        bookName = RandomStringUtils.randomAlphabetic(100);
+        bookTitle = RandomStringUtils.randomAlphabetic(100);
         author = new AuthorBuilder().build();
         publisher = RandomStringUtils.randomAlphabetic(100);
         yearOfPublish = new Random().nextInt();
@@ -27,7 +27,7 @@ public class BookBuilder {
     public Book build() {
         Book book = new Book();
         book.setId(id);
-        book.setBookName(bookName);
+        book.setBookTitle(bookTitle);
         book.setAuthor(author);
         book.setPublisher(publisher);
         book.setYearOfPublish(yearOfPublish);
@@ -40,8 +40,8 @@ public class BookBuilder {
         return this;
     }
 
-    public BookBuilder withBookName(String bookName) {
-        this.bookName = bookName;
+    public BookBuilder withBookTitle(String bookName) {
+        this.bookTitle = bookName;
         return this;
     }
 

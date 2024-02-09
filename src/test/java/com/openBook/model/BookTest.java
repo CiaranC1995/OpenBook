@@ -47,7 +47,7 @@ class BookTest {
                 1925, "Fiction");
 
         assertEquals(1, book.getId());
-        assertEquals("The Great Gatsby", book.getBookName());
+        assertEquals("The Great Gatsby", book.getBookTitle());
         assertEquals(fScottFitz, book.getAuthor());
         assertEquals("Scribner", book.getPublisher());
         assertEquals(1925, book.getYearOfPublish());
@@ -65,7 +65,7 @@ class BookTest {
 
         assertNotNull(book);
         assertEquals(0, book.getId());
-        assertNull(book.getBookName());
+        assertNull(book.getBookTitle());
         assertNull(book.getAuthor());
         assertNull(book.getPublisher());
         assertEquals(0, book.getYearOfPublish());
@@ -77,7 +77,7 @@ class BookTest {
 
         Book book1 = new BookBuilder()
                 .withId(1L)
-                .withBookName("The Great Gatsby")
+                .withBookTitle("The Great Gatsby")
                 .withAuthor(fScottFitz)
                 .withPublisher("Scribner")
                 .withYearOfPublish(1925)
@@ -86,7 +86,7 @@ class BookTest {
 
         Book book2 = new BookBuilder()
                 .withId(1L)
-                .withBookName("The Great Gatsby")
+                .withBookTitle("The Great Gatsby")
                 .withAuthor(fScottFitz)
                 .withPublisher("Scribner")
                 .withYearOfPublish(1925)
@@ -102,7 +102,7 @@ class BookTest {
 
         Book book1 = new BookBuilder()
                 .withId(1L)
-                .withBookName("The Great Gatsby")
+                .withBookTitle("The Great Gatsby")
                 .withAuthor(fScottFitz)
                 .withPublisher("Scribner")
                 .withYearOfPublish(1925)
@@ -111,7 +111,7 @@ class BookTest {
 
         Book book2 = new BookBuilder()
                 .withId(2L)
-                .withBookName("The Great Gatsby")
+                .withBookTitle("The Great Gatsby")
                 .withAuthor(fScottFitz)
                 .withPublisher("Scribner")
                 .withYearOfPublish(1925)
