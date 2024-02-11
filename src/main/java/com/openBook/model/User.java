@@ -1,10 +1,8 @@
 package com.openBook.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,20 +12,28 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AccountHolder {
+@Table(name = "user")
+public class User {
 
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @NotNull
-    private String firstName;
-    @NotNull
-    private String lastName;
-    @NotNull
-    @Email
-    private String email;
-    @NotNull
-    private String password;
 
+    @NotBlank
+    @Column(name = "first_name")
+    private String firstName;
+
+    @NotBlank
+    @Column(name = "last_name")
+    private String lastName;
+
+    @NotBlank
+    @Email
+    @Column(name = "email")
+    private String email;
+
+    @NotBlank
+    @Column(name = "password")
+    private String password;
 }
