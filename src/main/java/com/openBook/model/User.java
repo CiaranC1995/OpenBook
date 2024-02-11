@@ -17,7 +17,8 @@ public class User {
 
     @Id
     @NotNull
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotBlank
@@ -30,10 +31,8 @@ public class User {
 
     @NotBlank
     @Email
-    @Column(name = "email")
     private String email;
 
     @NotBlank
-    @Column(name = "password")
     private String password;
 }
