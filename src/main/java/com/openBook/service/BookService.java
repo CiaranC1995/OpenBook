@@ -17,18 +17,23 @@ public class BookService {
     public BookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
+
     public List<Book> getAllBooks() {
         return bookRepository.findAll();
     }
+
     public Optional<Book> getBookById(long id) {
         return bookRepository.findById(id);
     }
+
     public void addBook(Book book) {
         bookRepository.save(book);
     }
+
     public void deleteBookById(long id) {
         bookRepository.deleteById(id);
     }
+
     public void updateBook(Book book) throws IllegalArgumentException {
         Optional<Book> existingBookOptional = bookRepository.findById(book.getId());
         if (existingBookOptional.isEmpty()) {
