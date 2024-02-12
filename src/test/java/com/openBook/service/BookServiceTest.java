@@ -3,6 +3,7 @@ package com.openBook.service;
 import com.openBook.model.Author;
 import com.openBook.model.Book;
 import com.openBook.repository.BookRepository;
+import com.openBook.service.implementation.BookServiceImp;
 import com.openBook.test.config.builder.AuthorBuilder;
 import com.openBook.test.config.builder.BookBuilder;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,7 +27,7 @@ public class BookServiceTest {
     private BookRepository bookRepository;
 
     @InjectMocks
-    private BookService bookService;
+    private BookServiceImp bookService;
 
     private Book testBook;
 
