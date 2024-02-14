@@ -1,16 +1,13 @@
 package com.openBook.dto;
 
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDTO {
+public class AuthorDto {
 
     @NotNull
     private long id;
@@ -18,14 +15,14 @@ public class UserDTO {
     @NotBlank
     private String firstName;
 
+    private String middleName;
+
     @NotBlank
     private String lastName;
 
     @NotBlank
-    @Email
-    private String email;
+    private String nationality;
 
-    @NotBlank
-    private String password;
-
+    @NotNull
+    private int yearOfBirth;
 }

@@ -19,21 +19,23 @@ public class Book {
     @NotNull
     @Column(name = "book_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @NotBlank
-    @Column(name = "title")
-    private String bookTitle;
+    @Column(name = "title", nullable = false)
+    private String title;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(nullable = false)
     @JoinColumn(name = "author_id")
     private Author author;
 
     private String publisher;
 
-    private int yearOfPublish;
+    private Integer yearOfPublish;
 
     @NotBlank
+    @Column(nullable = false)
     private String genre;
 }

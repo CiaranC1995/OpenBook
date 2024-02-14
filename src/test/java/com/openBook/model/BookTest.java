@@ -43,18 +43,18 @@ class BookTest {
     @Test
     public void testParamConstructorAndGetters() {
 
-        Book book = new Book(1, "The Great Gatsby", fScottFitz, "Scribner",
+        Book book = new Book(1L, "The Great Gatsby", fScottFitz, "Scribner",
                 1925, "Fiction");
 
         assertEquals(1, book.getId());
-        assertEquals("The Great Gatsby", book.getBookTitle());
+        assertEquals("The Great Gatsby", book.getTitle());
         assertEquals(fScottFitz, book.getAuthor());
         assertEquals("Scribner", book.getPublisher());
         assertEquals(1925, book.getYearOfPublish());
         assertEquals("Fiction", book.getGenre());
 
         assertDoesNotThrow(() -> {
-            new Book(1, "The Great Gatsby", fScottFitz, "Scribner",
+            new Book(1L, "The Great Gatsby", fScottFitz, "Scribner",
                     1925, "Fiction");
         });
     }
@@ -65,7 +65,7 @@ class BookTest {
 
         assertNotNull(book);
         assertEquals(0, book.getId());
-        assertNull(book.getBookTitle());
+        assertNull(book.getTitle());
         assertNull(book.getAuthor());
         assertNull(book.getPublisher());
         assertEquals(0, book.getYearOfPublish());

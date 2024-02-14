@@ -19,20 +19,21 @@ public class Author {
     private long id;
 
     @NotBlank
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
     @Column(name = "middle_name")
     private String middleName;
 
     @NotBlank
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
     @NotBlank
+    @Column(nullable = false)
     private String nationality;
 
     @NotNull
-    @Column(name = "year_of_birth")
+    @Column(name = "year_of_birth", nullable = false)
     private int yearOfBirth;
 }

@@ -4,7 +4,7 @@ import com.openBook.model.Author;
 import com.openBook.model.Book;
 import com.openBook.test.config.builder.AuthorBuilder;
 import com.openBook.test.config.builder.BookBuilder;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -22,12 +22,15 @@ public class BookRepositoryTest {
     @Autowired
     private BookRepository bookRepository;
 
+    @Autowired
+    private AuthorRepository authorRepository;
+
     private static Book book1;
     private static Book book2;
     private static Author author;
 
-    @BeforeAll
-    static void beforeAll() {
+    @BeforeEach
+    void beforeEach() {
         author = new AuthorBuilder()
                 .withId(1L)
                 .withFirstName("Example")
@@ -36,6 +39,8 @@ public class BookRepositoryTest {
                 .withNationality("Example")
                 .withYearOfBirth(2024)
                 .build();
+
+        authorRepository.save(author);
 
         book1 = new BookBuilder()
                 .withBookTitle("TestTitle")
@@ -58,7 +63,7 @@ public class BookRepositoryTest {
 
         // Then
         assertNotNull(savedBook);
-        assertEquals(book1.getBookTitle(), savedBook.getBookTitle());
+        assertEquals(book1.getTitle(), savedBook.getTitle());
         assertEquals(book1.getAuthor(), savedBook.getAuthor());
     }
 
@@ -101,22 +106,19 @@ public class BookRepositoryTest {
         assertFalse(bookRepository.existsById(savedBook.getId()));
     }
 
-    /**
-     * New Code
-     */
     @Test
     void testUpdateBook() {
         // Given
         Book savedBook = bookRepository.save(book1);
 
         // When
-        savedBook.setBookTitle("UpdatedTitle");
+        savedBook.setTitle("UpdatedTitle");
         Book updatedBook = bookRepository.save(savedBook);
 
         // Then
         assertNotNull(updatedBook);
         assertEquals(savedBook.getId(), updatedBook.getId());
-        assertEquals("UpdatedTitle", updatedBook.getBookTitle());
+        assertEquals("UpdatedTitle", updatedBook.getTitle());
         assertEquals(savedBook.getAuthor(), updatedBook.getAuthor());
     }
 
@@ -144,7 +146,7 @@ public class BookRepositoryTest {
 
         // Then
         assertEquals(1, foundBooks.size());
-        assertEquals(searchTitle, foundBooks.get(0).getBookTitle());
+        assertEquals(searchTitle, foundBooks.get(0).getTitle());
     }
 
     @Test

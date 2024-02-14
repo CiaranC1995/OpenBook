@@ -1,6 +1,6 @@
 package com.openBook.test.config.dtoBuilder;
 
-import com.openBook.dto.AuthorDTO;
+import com.openBook.dto.AuthorDto;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.Random;
@@ -16,15 +16,15 @@ public class AuthorDtoBuilder {
 
     public AuthorDtoBuilder() {
         id = new Random().nextLong();
-        firstName = RandomStringUtils.randomAlphabetic(100);
-        middleName = RandomStringUtils.randomAlphabetic(100);
-        lastName = RandomStringUtils.randomAlphabetic(100);
-        nationality = RandomStringUtils.randomAlphabetic(100);
+        firstName = RandomStringUtils.randomAlphabetic(10);
+        middleName = RandomStringUtils.randomAlphabetic(10);
+        lastName = RandomStringUtils.randomAlphabetic(10);
+        nationality = RandomStringUtils.randomAlphabetic(10);
         yearOfBirth = new Random().nextInt();
     }
 
-    public AuthorDTO build() {
-        return new AuthorDTO(id, firstName, middleName, lastName, nationality, yearOfBirth);
+    public AuthorDto build() {
+        return new AuthorDto(id, firstName, middleName, lastName, nationality, yearOfBirth);
     }
 
     public AuthorDtoBuilder withId(Long id) {
@@ -56,4 +56,5 @@ public class AuthorDtoBuilder {
         this.yearOfBirth = yearOfBirth;
         return this;
     }
+
 }

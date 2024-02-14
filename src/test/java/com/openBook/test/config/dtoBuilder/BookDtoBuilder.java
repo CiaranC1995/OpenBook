@@ -1,12 +1,14 @@
-package com.openBook.test.config.builder;
+package com.openBook.test.config.dtoBuilder;
 
+import com.openBook.dto.BookDto;
 import com.openBook.model.Author;
 import com.openBook.model.Book;
+import com.openBook.test.config.builder.AuthorBuilder;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.Random;
 
-public class BookBuilder {
+public class BookDtoBuilder {
 
     private Long id;
     private String bookTitle;
@@ -15,7 +17,7 @@ public class BookBuilder {
     private Integer yearOfPublish;
     private String genre;
 
-    public BookBuilder() {
+    public BookDtoBuilder() {
         id = new Random().nextLong();
         bookTitle = RandomStringUtils.randomAlphabetic(100);
         author = new AuthorBuilder().build();
@@ -24,43 +26,43 @@ public class BookBuilder {
         genre = RandomStringUtils.randomAlphabetic(100);
     }
 
-    public Book build() {
-        Book book = new Book();
-        book.setId(id);
-        book.setTitle(bookTitle);
-        book.setAuthor(author);
-        book.setPublisher(publisher);
-        book.setYearOfPublish(yearOfPublish);
-        book.setGenre(genre);
-        return book;
+    public BookDto build() {
+        BookDto bookDto = new BookDto();
+        bookDto.setId(id);
+        bookDto.setTitle(bookTitle);
+        bookDto.setAuthorId(author.getId());
+        bookDto.setPublisher(publisher);
+        bookDto.setYearOfPublish(yearOfPublish);
+        bookDto.setGenre(genre);
+        return bookDto;
     }
 
-    public BookBuilder withId(Long id) {
+    public BookDtoBuilder withId(Long id) {
         this.id = id;
         return this;
     }
 
-    public BookBuilder withBookTitle(String bookName) {
+    public BookDtoBuilder withBookTitle(String bookName) {
         this.bookTitle = bookName;
         return this;
     }
 
-    public BookBuilder withAuthor(Author author) {
+    public BookDtoBuilder withAuthor(Author author) {
         this.author = author;
         return this;
     }
 
-    public BookBuilder withPublisher(String publisher) {
+    public BookDtoBuilder withPublisher(String publisher) {
         this.publisher = publisher;
         return this;
     }
 
-    public BookBuilder withYearOfPublish(Integer yearOfPublish) {
+    public BookDtoBuilder withYearOfPublish(Integer yearOfPublish) {
         this.yearOfPublish = yearOfPublish;
         return this;
     }
 
-    public BookBuilder withGenre(String genre) {
+    public BookDtoBuilder withGenre(String genre) {
         this.genre = genre;
         return this;
     }
