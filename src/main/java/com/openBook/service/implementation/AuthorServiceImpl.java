@@ -6,14 +6,17 @@ import com.openBook.model.Author;
 import com.openBook.repository.AuthorRepository;
 import com.openBook.service.AuthorService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Validated
 public class AuthorServiceImpl implements AuthorService {
 
     private final AuthorRepository authorRepository;
@@ -29,23 +32,51 @@ public class AuthorServiceImpl implements AuthorService {
     public List<AuthorDto> getAllAuthors() {
         return authorRepository.findAll()
                 .stream()
-                .map(author -> authorMapper.authorToAuthorDto(author))
+                .map(authorMapper::authorToAuthorDto)
                 .collect(Collectors.toList());
     }
 
     @Override
     public Optional<AuthorDto> getAuthorById(Long id) {
-        return authorRepository.findById(id).map(author -> authorMapper.authorToAuthorDto(author));
+        return authorRepository.findById(id).map(authorMapper::authorToAuthorDto);
     }
 
     @Override
-    public AuthorDto createAuthor(AuthorDto authorDto) {
+    public List<AuthorDto> getAuthorsByFirstName(String firstName) {
+        return authorRepository.findByFirstName(firstName).stream()
+                .map(authorMapper::authorToAuthorDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AuthorDto> getAuthorsByLastName(String lastName) {
+        return authorRepository.findByLastName(lastName).stream()
+                .map(authorMapper::authorToAuthorDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AuthorDto> getAuthorsByFirstNameAndLastName(String firstName, String lastName) {
+        return authorRepository.findByFirstNameAndLastName(firstName, lastName).stream()
+                .map(authorMapper::authorToAuthorDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AuthorDto> getAuthorsByNationality(String nationality) {
+        return authorRepository.findByNationality(nationality).stream()
+                .map(authorMapper::authorToAuthorDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public AuthorDto createAuthor(@Valid AuthorDto authorDto) {
         return authorMapper.authorToAuthorDto(
                 authorRepository.save(authorMapper.authorDtoToAuthor(authorDto)));
     }
 
     @Override
-    public AuthorDto updateAuthor(Long id, AuthorDto authorDto) {
+    public AuthorDto updateAuthor(Long id, @Valid AuthorDto authorDto) throws RuntimeException {
         Author existingAuthor = authorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Author not found with id: " + id));
 

@@ -1,19 +1,32 @@
 package com.openBook.service;
 
 import com.openBook.dto.AuthorDto;
+import jakarta.validation.Valid;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
+@Validated
 public interface AuthorService {
 
     List<AuthorDto> getAllAuthors();
 
     Optional<AuthorDto> getAuthorById(Long id);
 
-    AuthorDto createAuthor(AuthorDto authorDto);
+    List<AuthorDto> getAuthorsByFirstName(String firstName);
 
-    AuthorDto updateAuthor(Long id, AuthorDto authorDto);
+    List<AuthorDto> getAuthorsByLastName(String lastName);
+
+    List<AuthorDto> getAuthorsByFirstNameAndLastName(String firstName, String lastName);
+
+    List<AuthorDto> getAuthorsByNationality(String nationality);
+
+    AuthorDto createAuthor(@Valid AuthorDto authorDto);
+
+    AuthorDto updateAuthor(Long id, @Valid AuthorDto authorDto);
 
     void deleteAuthor(Long id);
 

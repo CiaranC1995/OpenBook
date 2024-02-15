@@ -1,6 +1,5 @@
-package com.openBook.model;
+package com.openBook.dto;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -8,30 +7,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "account_holder")
-public class AccountHolder {
+public class AccountHolderDto {
 
-    @Id
-    @Column(name = "account_holder_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @NotNull
     private long id;
-
     @NotBlank
-    @Column(name = "first_name")
     private String firstName;
-
     @NotBlank
-    @Column(name = "last_name")
     private String lastName;
-
     @NotBlank
     @Email
     private String email;
-
-    @NotBlank
-    private String password;
 }
