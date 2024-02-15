@@ -7,7 +7,6 @@ import com.openBook.test.config.dtoBuilder.AuthorDtoBuilder;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mapstruct.factory.Mappers;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +26,7 @@ public class AuthorMapperTest {
 
     @BeforeEach
     public void beforeEach() {
-        mapper = Mappers.getMapper(AuthorMapper.class);
+        mapper = AuthorMapper.INSTANCE;
     }
 
     @BeforeAll

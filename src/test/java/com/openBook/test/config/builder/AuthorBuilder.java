@@ -16,10 +16,10 @@ public class AuthorBuilder {
 
     public AuthorBuilder() {
         id = new Random().nextLong();
-        firstName = RandomStringUtils.randomAlphabetic(100);
-        middleName = RandomStringUtils.randomAlphabetic(100);
-        lastName = RandomStringUtils.randomAlphabetic(100);
-        nationality = RandomStringUtils.randomAlphabetic(100);
+        firstName = RandomStringUtils.randomAlphabetic(10);
+        middleName = RandomStringUtils.randomAlphabetic(10);
+        lastName = RandomStringUtils.randomAlphabetic(10);
+        nationality = RandomStringUtils.randomAlphabetic(10);
         yearOfBirth = new Random().nextInt();
     }
 

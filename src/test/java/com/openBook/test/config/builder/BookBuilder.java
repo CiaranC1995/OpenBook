@@ -17,11 +17,11 @@ public class BookBuilder {
 
     public BookBuilder() {
         id = new Random().nextLong();
-        bookTitle = RandomStringUtils.randomAlphabetic(100);
+        bookTitle = RandomStringUtils.randomAlphabetic(10);
         author = new AuthorBuilder().build();
-        publisher = RandomStringUtils.randomAlphabetic(100);
+        publisher = RandomStringUtils.randomAlphabetic(10);
         yearOfPublish = new Random().nextInt();
-        genre = RandomStringUtils.randomAlphabetic(100);
+        genre = RandomStringUtils.randomAlphabetic(10);
     }
 
     public Book build() {

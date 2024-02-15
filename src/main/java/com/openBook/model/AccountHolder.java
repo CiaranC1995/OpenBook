@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "user")
-public class User {
+@Table(name = "account_holder")
+public class AccountHolder {
 
     @Id
     @NotNull
-    @Column(name = "user_id")
+    @Column(name = "account_holder_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 

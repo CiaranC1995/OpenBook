@@ -19,18 +19,18 @@ public class BookDtoBuilder {
 
     public BookDtoBuilder() {
         id = new Random().nextLong();
-        bookTitle = RandomStringUtils.randomAlphabetic(100);
+        bookTitle = RandomStringUtils.randomAlphabetic(10);
         author = new AuthorBuilder().build();
-        publisher = RandomStringUtils.randomAlphabetic(100);
+        publisher = RandomStringUtils.randomAlphabetic(10);
         yearOfPublish = new Random().nextInt();
-        genre = RandomStringUtils.randomAlphabetic(100);
+        genre = RandomStringUtils.randomAlphabetic(10);
     }
 
     public BookDto build() {
         BookDto bookDto = new BookDto();
         bookDto.setId(id);
         bookDto.setTitle(bookTitle);
-        bookDto.setAuthorId(author.getId());
+        bookDto.setAuthorName(author.getFirstName() + " " + author.getLastName());
         bookDto.setPublisher(publisher);
         bookDto.setYearOfPublish(yearOfPublish);
         bookDto.setGenre(genre);

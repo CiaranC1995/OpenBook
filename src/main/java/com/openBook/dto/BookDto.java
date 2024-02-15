@@ -17,7 +17,7 @@ public class BookDto {
     private String title;
 
     @NotNull
-    private Long authorId;
+    private String authorName;
 
     private String publisher;
 

@@ -16,7 +16,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.ANY)
 public class BookRepositoryTest {
 
     @Autowired
@@ -142,7 +142,7 @@ public class BookRepositoryTest {
         String searchTitle = "TestTitle";
 
         // When
-        List<Book> foundBooks = bookRepository.findByBookTitle(searchTitle);
+        List<Book> foundBooks = bookRepository.findByTitle(searchTitle);
 
         // Then
         assertEquals(1, foundBooks.size());
@@ -150,7 +150,7 @@ public class BookRepositoryTest {
     }
 
     @Test
-    void testFindByGenre(){
+    void testFindByGenre() {
         // Given
         bookRepository.save(book1);
         bookRepository.save(book2);
