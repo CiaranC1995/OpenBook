@@ -25,7 +25,7 @@ public class AuthorRepositoryTest {
 
     @BeforeEach
     void beforeEach() {
-        testAuthorOne = new AuthorBuilder().withLastName("Casey").withYearOfBirth(1995).build();
+        testAuthorOne = new AuthorBuilder().withFirstName("Ciarán").withLastName("Casey").withYearOfBirth(1995).build();
         testAuthorTwo = new AuthorBuilder().withNationality("Irish").build();
     }
 
@@ -92,7 +92,25 @@ public class AuthorRepositoryTest {
         // When
         List<Author> foundAuthors = authorRepository.findByLastName(searchLastName);
 
+        //Then
         assertEquals(1, foundAuthors.size());
+        assertEquals(searchLastName, foundAuthors.get(0).getLastName());
+    }
+
+    @Test
+    void testFindByFirstAndLastName() {
+        // Given
+        authorRepository.save(testAuthorOne);
+        authorRepository.save(testAuthorTwo);
+        String searchFirstName = "Ciarán";
+        String searchLastName = "Casey";
+
+        // When
+        List<Author> foundAuthors = authorRepository.findByFirstNameAndLastName(searchFirstName, searchLastName);
+
+        // Then
+        assertEquals(1, foundAuthors.size());
+        assertEquals(searchFirstName, foundAuthors.get(0).getFirstName());
         assertEquals(searchLastName, foundAuthors.get(0).getLastName());
     }
 

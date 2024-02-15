@@ -5,11 +5,12 @@ import com.openBook.model.Author;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Mapper
+@Component
 public interface AuthorMapper {
 
     AuthorMapper INSTANCE = Mappers.getMapper(AuthorMapper.class);
