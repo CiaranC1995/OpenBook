@@ -72,23 +72,8 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public AuthorDto createAuthor(@Valid AuthorDto authorDto) {
         return authorMapper.authorToAuthorDto(
-                authorRepository.save(authorMapper.authorDtoToAuthor(authorDto)));
-    }
-
-    @Override
-    public AuthorDto updateAuthor(Long id, @Valid AuthorDto authorDto) throws RuntimeException {
-        Author existingAuthor = authorRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Author not found with id: " + id));
-
-        existingAuthor.setFirstName(authorDto.getFirstName());
-        existingAuthor.setMiddleName(authorDto.getMiddleName());
-        existingAuthor.setLastName(authorDto.getLastName());
-        existingAuthor.setNationality(authorDto.getNationality());
-        existingAuthor.setYearOfBirth(authorDto.getYearOfBirth());
-
-        Author updatedAuthor = authorRepository.save(existingAuthor);
-
-        return authorMapper.authorToAuthorDto(updatedAuthor);
+                authorRepository.save(authorMapper.authorDtoToAuthor(authorDto))
+        );
     }
 
     @Override
