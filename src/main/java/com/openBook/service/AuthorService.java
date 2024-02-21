@@ -26,8 +26,6 @@ public interface AuthorService {
 
     AuthorDto createAuthor(@Valid AuthorDto authorDto);
 
-    AuthorDto updateAuthor(Long id, @Valid AuthorDto authorDto);
-
     void deleteAuthor(Long id);
 
     void deleteAllAuthors();
