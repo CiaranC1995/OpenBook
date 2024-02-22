@@ -70,7 +70,10 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public AuthorDto createAuthor(@Valid AuthorDto authorDto) {
+    public AuthorDto createAuthor(@Valid AuthorDto authorDto) throws IllegalArgumentException {
+        if (authorRepository.existsById(authorDto.getId())) {
+            throw new IllegalArgumentException(String.format("Author with id %s already exists.", authorDto.getId()));
+        }
         return authorMapper.authorToAuthorDto(
                 authorRepository.save(authorMapper.authorDtoToAuthor(authorDto))
         );
