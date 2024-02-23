@@ -1,5 +1,6 @@
 package com.openBook.service.implementation;
 
+import com.openBook.dto.AccountHolderCreationDto;
 import com.openBook.dto.AccountHolderDto;
 import com.openBook.mapper.AccountHolderMapper;
 import com.openBook.model.AccountHolder;
@@ -70,9 +71,9 @@ public class AccountHolderServiceImpl implements AccountHolderService {
     }
 
     @Override
-    public AccountHolderDto createAccountHolder(@Valid AccountHolderDto accountHolderDto) {
-        return accountHolderMapper.accountHolderToAccountHolderDto(
-                accountHolderRepository.save(accountHolderMapper.accountHolderDtoToAccountHolder(accountHolderDto)));
+    public AccountHolderCreationDto createAccountHolder(@Valid AccountHolderCreationDto accountHolderCreationDto) {
+        return accountHolderMapper.accountHolderToAccountHolderCreationDto(
+                accountHolderRepository.save(accountHolderMapper.accountHolderCreationDtoToAccountHolder(accountHolderCreationDto)));
     }
 
     @Override

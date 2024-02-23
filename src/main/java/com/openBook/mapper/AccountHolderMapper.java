@@ -1,5 +1,6 @@
 package com.openBook.mapper;
 
+import com.openBook.dto.AccountHolderCreationDto;
 import com.openBook.dto.AccountHolderDto;
 import com.openBook.model.AccountHolder;
 import org.mapstruct.Mapper;
@@ -21,4 +22,8 @@ public interface AccountHolderMapper {
     AccountHolder accountHolderDtoToAccountHolder(AccountHolderDto accountHolderDto);
 
     List<AccountHolder> accountHolderDtosToAccountHolders(List<AccountHolderDto> accountHolderDtos);
+
+    AccountHolder accountHolderCreationDtoToAccountHolder(AccountHolderCreationDto accountHolderCreationDto);
+
+    AccountHolderCreationDto accountHolderToAccountHolderCreationDto(AccountHolder accountHolder);
 }

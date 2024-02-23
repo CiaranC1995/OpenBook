@@ -1,5 +1,6 @@
 package com.openBook.service;
 
+import com.openBook.dto.AccountHolderCreationDto;
 import com.openBook.dto.AccountHolderDto;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public interface AccountHolderService {
 
     List<AccountHolderDto> getAccountHoldersByEmail(String email);
 
-    AccountHolderDto createAccountHolder(@Valid AccountHolderDto accountHolderDto);
+    AccountHolderCreationDto createAccountHolder(@Valid AccountHolderCreationDto accountHolderCreationDto);
 
     AccountHolderDto updateAccountHolder(Long id, @Valid AccountHolderDto accountHolderDto);
 
