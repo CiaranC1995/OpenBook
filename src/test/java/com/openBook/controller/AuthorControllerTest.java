@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -65,6 +64,7 @@ class AuthorControllerTest {
         // Then
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(expectedAuthor, response.getBody());
+        assertNotNull(response.getBody());
     }
 
     @Test
@@ -78,6 +78,7 @@ class AuthorControllerTest {
 
         // Then
         assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertNull(response.getBody());
     }
 
     @Test
