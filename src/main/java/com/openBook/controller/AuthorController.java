@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = {"/authors", "/authors/"})
 public class AuthorController {
 
     private final AuthorService authorService;
@@ -20,13 +21,16 @@ public class AuthorController {
         this.authorService = authorService;
     }
 
-    @RequestMapping(value = {"/authors", "/authors/"}, method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<AuthorDto>> getAllAuthors() {
         List<AuthorDto> authors = authorService.getAllAuthors();
+        if (authors.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok(authors);
     }
 
-    @RequestMapping(value = {"/authors/{id}", "/authors/{id}/"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/{id}", "/{id}/"}, method = RequestMethod.GET)
     public ResponseEntity<AuthorDto> getAuthorById(@PathVariable Long id) {
         AuthorDto author = authorService.getAuthorById(id)
                 .orElse(null);
@@ -36,7 +40,7 @@ public class AuthorController {
         return ResponseEntity.ok(author);
     }
 
-    @RequestMapping(value = "/authors/name", method = RequestMethod.GET)
+    @RequestMapping(value = {"/name", "/name/"}, method = RequestMethod.GET)
     public ResponseEntity<List<AuthorDto>> getAuthorsByName(
             @RequestParam(required = false) String firstName,
             @RequestParam(required = false) String lastName) {
@@ -58,9 +62,8 @@ public class AuthorController {
         return ResponseEntity.ok(authors);
     }
 
-    @RequestMapping(value = "/authors/nationality", method = RequestMethod.GET)
-    public ResponseEntity<List<AuthorDto>> getAuthorsByNationality(
-            @RequestParam(required = true) String nationality) {
+    @RequestMapping(value = {"/nationality", "/nationality/"}, method = RequestMethod.GET)
+    public ResponseEntity<List<AuthorDto>> getAuthorsByNationality(@RequestParam String nationality) {
 
         List<AuthorDto> authors = authorService.getAuthorsByNationality(nationality);
 
@@ -70,17 +73,17 @@ public class AuthorController {
         return ResponseEntity.ok(authors);
     }
 
-    @RequestMapping(value = {"/authors", "/authors/"}, method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<String> createAuthor(@RequestBody @Valid AuthorDto authorDto) {
         try {
             AuthorDto createdAuthor = authorService.createAuthor(authorDto);
-            return ResponseEntity.ok(String.format("Author with id=%s successfully created...", authorDto.getId()));
+            return ResponseEntity.ok(String.format("Author with id=%s successfully created...", createdAuthor.getId()));
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
-    @RequestMapping(value = {"/authors/delete/{id}", "/authors/delete/{id}/"}, method = RequestMethod.DELETE)
+    @RequestMapping(value = {"/delete/{id}", "/delete/{id}/"}, method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteAuthor(@PathVariable Long id) {
         try {
             authorService.deleteAuthor(id);
@@ -90,7 +93,7 @@ public class AuthorController {
         }
     }
 
-    @RequestMapping(value = {"/authors/delete", "/authors/delete/"}, method = RequestMethod.DELETE)
+    @RequestMapping(value = {"/delete", "/delete/"}, method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteAllAuthors() {
         authorService.deleteAllAuthors();
         return ResponseEntity.ok().body("All authors successfully deleted...");
