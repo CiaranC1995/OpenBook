@@ -13,7 +13,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,6 +50,19 @@ class AuthorControllerTest {
         // Then
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(testAuthors, response.getBody());
+    }
+
+    @Test
+    void testGetAllAuthorsWhenNoneExist() {
+        // Given
+        when(authorService.getAllAuthors()).thenReturn(Collections.emptyList());
+
+        // When
+        ResponseEntity<List<AuthorDto>> response = authorController.getAllAuthors();
+
+        // Then
+        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
+        assertNull(response.getBody());
     }
 
     @Test
@@ -186,7 +201,7 @@ class AuthorControllerTest {
 
         // Then
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("Author with id=3 successfully created...", response.getBody());
+        assertEquals("Author with id=3 successfully created ...", response.getBody());
     }
 
     @Test
@@ -214,7 +229,7 @@ class AuthorControllerTest {
 
         // Then
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("Author with id=1 successfully deleted...", response.getBody());
+        assertEquals("Author with id=1 successfully deleted ...", response.getBody());
     }
 
     @Test
@@ -237,7 +252,7 @@ class AuthorControllerTest {
 
         // Then
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("All authors successfully deleted...", response.getBody());
+        assertEquals("All authors successfully deleted ...", response.getBody());
     }
 
 }

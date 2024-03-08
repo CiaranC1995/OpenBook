@@ -317,7 +317,7 @@ public class BookControllerTest {
 
         // Then
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("Book with id=100 successfully created...", response.getBody());
+        assertEquals("Book with id=100 successfully created ...", response.getBody());
     }
 
     @Test
@@ -345,7 +345,7 @@ public class BookControllerTest {
 
         // Then
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("Book with id=1 successfully deleted...", response.getBody());
+        assertEquals("Book with id=1 successfully deleted ...", response.getBody());
     }
 
     @Test
@@ -368,6 +368,6 @@ public class BookControllerTest {
 
         // Then
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("All books successfully deleted...", response.getBody());
+        assertEquals("All books successfully deleted ...", response.getBody());
     }
 }
